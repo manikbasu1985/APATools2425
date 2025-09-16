@@ -1,0 +1,207 @@
+﻿@model APATools.Models.A_APA_TE_1
+
+@{
+    ViewBag.Title = "APA-TE-1";
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Entry of APA-TE-1</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <h2>
+                    GP Dashboard of @if (ViewBag.GPName != null)
+                    {
+                        <small>@ViewBag.GPName</small>
+                    }
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                @using (Html.BeginForm("APA_TE_1_State_Edit", "StateEditDashboard", FormMethod.Post, new
+                {
+                    enctype = "multipart/form-data"
+                }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="number" asp-for="ID" hidden />
+                    <div class="row">
+                        <h4 class="col-form-label col-md-5 col-sm-5">APA-TE-1 Entry</h4>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                GP Code <span class=""></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="number" class="form-control col-form-label" readonly value="@Model.GPCode" name="GPCode" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Financial Year <span class=""></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select name="FYCode" class="form-control col-form-label" id="schemetype" >
+                                    <option selected value="@Model.FYCode">@ViewBag.FYName</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Total Nos. of Planned Activities under SFC, CFC and OSR Funds for FY 2025-26 <span class=""></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="text" asp-for="TotalNoofPlanActivities" id="totalPlan" onkeypress="return decimalOnly(event)" class="form-control col-form-label"  />
+                                <span>@Html.ValidationMessageFor(model => model.TotalNoofPlanActivities, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Total Nos. of Plans under Sankalpa <span class=""></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="text" asp-for="TotalNoofPlanUnderSankalpa" id="totalSankalpa" onkeypress="return decimalOnly(event)" class="form-control col-form-label"  />
+                                <span>@Html.ValidationMessageFor(model => model.TotalNoofPlanUnderSankalpa, "", new { @class = "text-danger" }) </span>
+                                <span id="error" style="color:red;"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-5">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                GP to Upload PDF Document of Annexure - 4
+                                (Max 5 MB)<span class=""></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" class="form-control col-form-label" asp-for="PlanActivitiesUploadForPDF"  />
+                                <a asp-action="Download" asp-controller="StateDashboard"
+                                   asp-route-filename="@Model.PlanActivitiesUploadForPDF_Path" class="btn-sm text-primary col-form-label">Download</a>
+                                <span>@Html.ValidationMessageFor(model => model.PlanActivitiesUploadForPDF, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-5">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                GP to Upload Excel Document of Annexure - 4
+                                (Max 5 MB)<span class=""></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                
+                                <input type="file" class="form-control col-form-label" asp-for="PlanActivitiesUploadForExcel"  />
+                                <a asp-action="Download" asp-controller="StateDashboard"
+                                   asp-route-filename="@Model.PlanActivitiesUploadForExcel_Path" class="btn-sm text-primary col-form-label">Download</a>
+                                <span>@Html.ValidationMessageFor(model => model.PlanActivitiesUploadForExcel, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-2">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class=""></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="submit" class="btn btn-success" value="Submit" />
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class=""></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-8">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class=""></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <div class="row">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function decimalOnly(evt) {
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            // Check if there's already a decimal point
+            var inputValue = evt.target.value;
+            if (charCode == 46 && inputValue.indexOf('.') !== -1) {
+                return false;
+            }
+            return true;
+        }
+    $(document).ready(function () {
+
+        function validateInputs() {
+            var val1 = parseInt($('#totalPlan').val());
+            var val2 = parseInt($('#totalSankalpa').val());
+            if (!isNaN(val1) && !isNaN(val2)) {
+                if (val1 < val2) {
+                    $('#error').text('Total No. of Plans is always greater than or equal to Sankalpa Activities');
+                    //alert("Total Members is always greater than Attended Members");
+                    $('#totalSankalpa').val("");
+                    //$('#attendedNumber').css("border-color","red");
+                    //$('#attendedNumber').text("");
+                    //
+                    return false;
+                } else {
+                    $('#error').text('');
+                    return true;
+                }
+            } else {
+                $('#error').text('');
+                return false;
+            }
+        }
+
+        // Only trigger validation when input2 is typed into
+        $('#totalSankalpa').on('keyup', validateInputs);
+
+        // Still check on form submit
+
+    });
+</script>

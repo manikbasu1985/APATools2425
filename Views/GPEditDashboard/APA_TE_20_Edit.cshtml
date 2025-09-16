@@ -1,0 +1,165 @@
+﻿@model APATools.Models.A_APA_TE_20
+@{
+    ViewData["Title"] = "APA 2024-2025 TE_20";
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Dashboard!</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    Home of <small>
+                        @if (Context.Session.GetString("UserInfo") != null)
+                            @Context.Session.GetString("UserInfo")
+                        
+
+                        </small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                @if (TempData["Failed"] != null)
+                {
+                    <div class="x_content">
+                        <div class="alert alert-danger">
+                            @TempData["Failed"]
+                        </div>
+                    </div>
+                }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                <form asp-action="APA_TE_20_Edit" asp-controller="GPEditDashboard" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <h4 class="col-form-label col-md-5 col-sm-5">APA-TE-20 Entry</h4>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                GP Code <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="number" asp-for="GPCode" class="form-control col-form-label" readonly value="@Model.GPCode" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Financial Year <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="FYCode" class="form-control col-form-label" id="schemetype" required="required">
+                                    <option selected value="@Model.FYCode">@ViewBag.FYName</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Grievence Logged in GRMS <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input asp-for="GrievenceLogged" id="totalNumber" type="number" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.GrievenceLogged, "", new { @class = "text-danger" }) </span>
+                                <span class="text-danger">@Model.GrievenceLogged</span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Grievence Resolved in GRMS <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input asp-for="GrievenceResolved" id="attendedNumber" type="number" class="form-control col-form-label" required />
+                                <span class="text-danger" id="error"></span>
+                                <span>@Html.ValidationMessageFor(model => model.GrievenceResolved, "", new { @class = "text-danger" }) </span>
+                                <span class="text-danger">@Model.GrievenceResolved</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Screenshot Image to upload (.jpg / .jpeg) (Max 5 MB)<span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" asp-for="GrievenceImage" value="Submit" class="col-form-label" required />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="submit" value="Submit" class="btn btn-primary col-form-label" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <div class="row">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        function validateInputs() {
+            var val1 = parseInt($('#totalNumber').val());
+            var val2 = parseInt($('#attendedNumber').val());
+            if (!isNaN(val1) && !isNaN(val2)) {
+                if (val1 < val2) {
+                    $('#error').text('Total Grievence Logged is always greater than or equal to Resolved');
+                    //alert("Total Members is always greater than Attended Members");
+                    $('#attendedNumber').val("");
+                    //$('#attendedNumber').css("border-color","red");
+                    //$('#attendedNumber').text("");
+                    //
+                    return false;
+                } else {
+                    $('#error').text('');
+                    return true;
+                }
+            } else {
+                $('#error').text('');
+                return false;
+            }
+        }
+
+        // Only trigger validation when input2 is typed into
+        $('#attendedNumber').on('keyup', validateInputs);
+
+        // Still check on form submit
+            const today = new Date().toISOString().split('T')[0];
+    document.getElementById("myDate").setAttribute('max', today);
+    });
+</script>

@@ -1,0 +1,1105 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>User | @Context.Session.GetString("UserInfo")</title>
+    <!-- Bootstrap -->
+    <link href="~/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Font Awesome -->
+    <link href="~/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" asp-append-version="true" />
+    <!-- NProgress -->
+    <link href="~/vendors/nprogress/nprogress.css" rel="stylesheet" asp-append-version="true" />
+    <!-- iCheck -->
+    <link href="~/vendors/iCheck/skins/flat/green.css" rel="stylesheet" asp-append-version="true" />
+
+    <!-- bootstrap-progressbar -->
+    <link href="~/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" asp-append-version="true" />
+    <!-- JQVMap -->
+    <link href="~/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" asp-append-version="true" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Datatables -->
+
+    <link href="https://cdn.datatables.net/v/dt/jq-3.7.0/moment-2.29.4/dt-2.3.2/af-2.7.0/b-3.2.3/b-colvis-3.2.3/b-html5-3.2.3/cr-2.1.1/cc-1.0.6/date-1.5.5/fc-5.0.4/fh-4.0.3/kt-2.12.1/sc-2.4.3/sb-1.8.2/sp-2.3.3/sl-3.0.1/sr-1.4.1/datatables.min.css" rel="stylesheet" integrity="sha384-TbQOWnbvtrn/YIecpMYbk1Df2+2EIPQdC7kL0LqRvq3gHaorl1R3FsKOFoehR4f2" crossorigin="anonymous">
+
+    <link href="https://cdn.datatables.net/datetime/1.5.5/css/dataTables.dateTime.min.css" asp-append-version="true" />
+    <!-- Date Picker-->
+    @* <link href="https://unpkg.com/gijgo@1.9.14/css/gijgo.min.css" rel="stylesheet" type="text/css" asp-append-version="true" /> *@
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+    <!-- Date Picker-->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- Custom Theme Style -->
+    <link href="~/build/css/custom.min.css" rel="stylesheet" asp-append-version="true" />
+    <!-- Datatable CSS-->
+    @*<link href="https://cdn.datatables.net/v/bs5/jq-3.7.0/jszip-3.10.1/dt-2.3.2/af-2.7.0/b-3.2.3/b-colvis-3.2.3/b-html5-3.2.3/cr-2.1.1/cc-1.0.6/date-1.5.5/fc-5.0.4/fh-4.0.3/kt-2.12.1/r-3.0.4/rg-1.5.1/rr-1.5.0/sc-2.4.3/sb-1.8.2/sp-2.3.3/sl-3.0.1/sr-1.4.1/datatables.min.css" rel="stylesheet" integrity="sha384-pbnGBo4HGtSvh9EwxtKnC0V5KtjUc6q9PpUKKSUulNpPxapsIcO4Cg5F1s1NWZeD" crossorigin="anonymous">
+ *@
+    @* <style>
+        .input-group-append .btn {
+        font-size: inherit !important;
+        }
+
+        div.dt-container {
+        width: 100%;
+        margin: 0 auto;
+        }
+
+            div.dt-container .dt-buttons, .dt-scroll {
+        float: left;
+        display: inline;
+        margin: 0 auto;
+        }
+
+        div.dt-container .dt-search {
+        float: right;
+        display: inline;
+        margin: 0 auto;
+
+        } 
+        div.dt-buttons > .dt-button, div.dt-buttons > div.dt-button-split .dt-button .buttons-html5 {
+        color: #28a745 !important;
+        border-color: #28a745;
+        }
+    </style> *@
+</head>
+
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="@Url.Action("Index", "Home")" class="site_title">
+                            <i class="fa fa-paw"></i> <span>APA Tools</span>
+                            <img src="~/images/logo_bg_white.jpg" />
+                        </a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="~/images/img.jpg" alt="~." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2>@Context.Session.GetString("UserInfo")</h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>General</h3>
+                            @if (Context.Session.GetString("UserRole") != null)
+                            {
+                                if (Context.Session.GetString("UserRole") == "4")
+                                {
+                                    <ul class="nav side-menu">
+                                        <li>
+                                            <a><i class="fa fa-bar-chart-o"></i>APA Compile Reports<span class="fa fa-chevron-down"> </span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Reports<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li><a href="@Url.Action("APA_Total_Entry_Count_State", "StateReport")">District wise Count</a></li>
+                                                        <li><a href="@Url.Action("APA_Total_Entry_Count_by_GP_State", "StateReport")">GP wise Count</a></li>
+                                                        <li><a href="@Url.Action("CheckedCompletedGP", "StateReport")">GP wise Complete Checked</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a><i class="fa fa-bar-chart-o"></i>APA Reports<span class="fa fa-chevron-down"> </span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> MC Reports<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li><a href="@Url.Action("APA_MC_1_State","StateReport")">MC-1</a></li>
+                                                        <li><a href="@Url.Action("APA_MC_2_State","StateReport")">MC-2</a></li>
+                                                        <li><a href="@Url.Action("APA_MC_3_State","StateReport")">MC-3</a></li>
+                                                        <li><a href="@Url.Action("APA_MC_4_State","StateReport")">MC-4</a></li>
+                                                        <li><a href="@Url.Action("APA_MC_5_State","StateReport")">MC-5</a></li>
+                                                        <li><a href="@Url.Action("APA_MC_6_State","StateReport")">MC-6</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme-1 Reports<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li><a href="@Url.Action("APA_TE_1_State", "StateReport")">TE-1</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_2_State", "StateReport")">TE-2</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_3_State", "StateReport")">TE-3</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_4_State", "StateReport")">TE-4</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme-2 Reports<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li><a href="@Url.Action("APA_TE_5_State", "StateReport")">TE-5</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_6_State", "StateReport")">TE-6</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_7_State", "StateReport")">TE-7</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_8_State", "StateReport")">TE-8</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme-3 Reports<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li><a href="@Url.Action("APA_TE_9_State", "StateReport")">TE-9</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_10_State", "StateReport")">TE-10</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_11_State", "StateReport")">TE-11</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_13_State", "StateReport")">TE-13</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_14_State", "StateReport")">TE-14</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme-4 Reports<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li><a href="@Url.Action("APA_TE_16_State", "StateReport")">TE-16</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_17_State", "StateReport")">TE-17</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_18_State", "StateReport")">TE-18</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_19_State", "StateReport")">TE-19</a></li>
+                                                        <li><a href="@Url.Action("APA_TE_20_State", "StateReport")">TE-20</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        
+                                    </ul>
+                                }
+                                else if (Context.Session.GetString("UserRole") == "10")
+                                {
+                                    <ul class="nav side-menu">
+                                        <li>
+                                            <a><i class="fa fa-bar-chart-o"></i>GP Tools<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Mandatory Conditions</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-1<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_1", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-2<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_2", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-5<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_5", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-6<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_6", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Theme - 1</a>
+                                                    <ul class="nav child_menu">
+
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-1<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_1", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-2<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_2", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-3<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_3", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-4<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_4", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Theme - 2</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-5 <span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_5", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-6<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_6", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-7<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_7", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-8<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_8", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-9<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_9", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme - 3</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-10<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_10", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-11<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_11", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-13<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_13", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-14<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_14", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme - 4</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-16<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_16", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-17<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_17", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-19<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_19", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-20<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_20", "GPDashboard")">Add Entry</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a><i class="fa fa-bar-chart-o"></i> Report Tools<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Mandatory Conditions</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-1<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_1_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-2<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_2_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-3<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_3_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-4<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_4_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-5<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_5_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-6<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_6_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Theme - 1</a>
+                                                    <ul class="nav child_menu">
+
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-1<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_1_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-2<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_2_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-3<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_3_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-4<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_4_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Theme - 2</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-5<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_5_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-6<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_6_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-7<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_7_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-8<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_8_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-9<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_9_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme - 3<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-10<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_10_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-11<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_11_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-13<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_13_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-14<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_14_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme - 4<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-16<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_16_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-17<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_17_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-18<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_18_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-19<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_19_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-20<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_20_Report", "GPReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                }
+                                else if (Context.Session.GetString("UserRole") == "7")
+                                {
+                                    <ul class="nav side-menu">
+                                        <li>
+                                            <a><i class="fa fa-bar-chart-o"></i> Consolidated Report Tools<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li><a href="@Url.Action("APA_Total_Entry_Count_Blockwise", "DistrictReport")">Blockwise Consolidated Report</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a><i class="fa fa-bar-chart-o"></i> Report Tools<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Mandatory Conditions</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-1<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_1_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-2<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_2_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-3<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_3_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-4<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_4_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-5<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_5_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-6<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_6_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Theme - 1</a>
+                                                    <ul class="nav child_menu">
+
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-1<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_1_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-2<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_2_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-3<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_3_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-4<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_4_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Theme - 2</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-5<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_5_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-6<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_6_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-7<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_7_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-8<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_8_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-9<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_9_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme - 3<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-10<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_10_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-11<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_11_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-13<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_13_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-14<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_14_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme - 4<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-16<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_16_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-17<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_17_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-18<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_18_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-19<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_19_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-20<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_20_DCU", "DistrictReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                }
+                                else if (Context.Session.GetString("UserRole") == "9")
+                                {
+                                    <ul class="nav side-menu">
+                                        <li>
+                                            <a><i class="fa fa-bar-chart-o"></i> Report Tools<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Mandatory Conditions</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-1<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_1_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-2<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_2_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-3<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_3_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-4<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_4_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-5 & APA-TE-11<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_5_TE_11_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-MC-6<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_MC_6_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Theme - 1</a>
+                                                    <ul class="nav child_menu">
+
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-1<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_1_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-2<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_2_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-3<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_3_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-4<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_4_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Theme - 2</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-5<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_5_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-6<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_6_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-7<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_7_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-8<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_8_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-9<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_9_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme - 3<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-10<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_10_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-11<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_11_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-13<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_13_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-14<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_14_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i> Theme - 4<span class="fa fa-chevron-down"></span></a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-16<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_16_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-17<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_17_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-18<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_18_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-19<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_19_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> APA-TE-20<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("APA_TE_20_Block", "BlockReport")">See Report</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                }
+                                else if (Context.Session.GetString("UserRole") == "1")
+                                {
+                                    <ul class="nav side-menu">
+                                        <li>
+                                            <a><i class="fa fa-bar-chart-o"></i> Admin Tools<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Admin Details</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> Assign PMU User for Check APA<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("AssignDistrictofAPAfromPMU", "AdminDashboard")">Assign User</a></li>
+                                                                <li><a href="@Url.Action("UpdateActiveStatus", "AdminDashboard")">Active Status Update</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> Results<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                <li><a href="@Url.Action("GetResults", "AdminDashboard")">Results</a></li>
+                                                                <li><a href="@Url.Action("GetResultwithValue", "AdminDashboard")">Results with Value</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <ul class="nav side-menu">
+                                        <li></li>
+                                    </ul>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- top navigation -->
+
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <nav class="nav navbar-nav">
+                        <ul class=" navbar-right">
+                            <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="~/images/img.jpg" alt="">@Context.Session.GetString("UserName")
+                                </a>
+                                <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+                                    @*<a class="dropdown-item" href="javascript:;"> Profile</a>
+                                        <a class="dropdown-item" href="javascript:;">
+                                            <span class="badge bg-red pull-right">50%</span>
+                                            <span>Settings</span>
+                                        </a>
+                                        <a class="dropdown-item" href="javascript:;">Help</a>*@
+
+                                    <a class="dropdown-item" href="@Url.Action("Logout","User")"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <!-- page content -->
+            <div class="right_col" role="main">
+                <div class="">
+
+                    @RenderBody()
+                </div>
+            </div>
+            <!-- /page content -->
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    MKB -DEV - APA Tools by <a href="#">Manik Basu</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <!-- compose -->
+    <div class="compose col-md-6  ">
+        <div class="compose-header">
+            New Message
+            <button type="button" class="close compose-close">
+                <span>×</span>
+            </button>
+        </div>
+
+        <div class="compose-body">
+            <div id="alerts"></div>
+
+            <div class="btn-toolbar editor" data-role="editor-toolbar" data-target="#editor">
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font"><i class="fa fa-font"></i><b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a data-edit="fontSize 5">
+                                <p style="font-size:17px">Huge</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-edit="fontSize 3">
+                                <p style="font-size:14px">Normal</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a data-edit="fontSize 1">
+                                <p style="font-size:11px">Small</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="btn-group">
+                    <a class="btn" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                    <a class="btn" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                    <a class="btn" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                    <a class="btn" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                </div>
+
+                <div class="btn-group">
+                    <a class="btn" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+                    <a class="btn" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+                    <a class="btn" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-dedent"></i></a>
+                    <a class="btn" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                </div>
+
+                <div class="btn-group">
+                    <a class="btn" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+                    <a class="btn" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+                    <a class="btn" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+                    <a class="btn" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+                </div>
+
+                <div class="btn-group">
+                    <a class="btn dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
+                    <div class="dropdown-menu input-append">
+                        <input class="span2" placeholder="URL" type="text" data-edit="createLink" />
+                        <button class="btn" type="button">Add</button>
+                    </div>
+                    <a class="btn" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-cut"></i></a>
+                </div>
+
+                <div class="btn-group">
+                    <a class="btn" title="Insert picture (or just drag & drop)" id="pictureBtn"><i class="fa fa-picture-o"></i></a>
+                    <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                </div>
+
+                <div class="btn-group">
+                    <a class="btn" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                    <a class="btn" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                </div>
+            </div>
+
+            <div id="editor" class="editor-wrapper"></div>
+        </div>
+
+        <div class="compose-footer">
+            <button id="send" class="btn btn-sm btn-success" type="button">Send</button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/vendors/bootstrap/dist/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
+    <!-- FastClick -->
+    <script src="~/vendors/fastclick/lib/fastclick.js" asp-append-version="true"></script>
+    <!-- NProgress -->
+    <script src="~/vendors/nprogress/nprogress.js" asp-append-version="true"></script>
+    <!-- Chart.js -->
+    <script src="~/vendors/Chart.js/dist/Chart.min.js" asp-append-version="true"></script>
+    <!-- jQuery Sparklines -->
+    <script src="~/vendors/jquery-sparkline/dist/jquery.sparkline.min.js" asp-append-version="true"></script>
+    <!-- morris.js -->
+    <script src="~/vendors/raphael/raphael.min.js" asp-append-version="true"></script>
+    <script src="~/vendors/morris.js/morris.min.js" asp-append-version="true"></script>
+    <!-- gauge.js -->
+    <script src="~/vendors/gauge.js/dist/gauge.min.js" asp-append-version="true"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js" asp-append-version="true"></script>
+    <!-- Skycons -->
+    <script src="~/vendors/skycons/skycons.js" asp-append-version="true"></script>
+    <!-- Flot -->
+    <script src="~/vendors/Flot/jquery.flot.js" asp-append-version="true"></script>
+    <script src="~/vendors/Flot/jquery.flot.pie.js" asp-append-version="true"></script>
+    <script src="~/vendors/Flot/jquery.flot.time.js" asp-append-version="true"></script>
+    <script src="~/vendors/Flot/jquery.flot.stack.js" asp-append-version="true"></script>
+    <script src="~/vendors/Flot/jquery.flot.resize.js" asp-append-version="true"></script>
+    <!-- Flot plugins -->
+    <script src="~/vendors/flot.orderbars/js/jquery.flot.orderBars.js" asp-append-version="true"></script>
+    <script src="~/vendors/flot-spline/js/jquery.flot.spline.min.js" asp-append-version="true"></script>
+    <script src="~/vendors/flot.curvedlines/curvedLines.js" asp-append-version="true"></script>
+    <!-- DateJS -->
+    <script src="~/vendors/DateJS/build/date.js" asp-append-version="true"></script> 
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/vendors/moment/min/moment.min.js" asp-append-version="true"></script>
+    @* <script src="~/vendors/bootstrap-daterangepicker/daterangepicker.js"></script> *@
+    
+    <!-- Date Picker-->
+    @* <script src="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.10.0/dist/js/bootstrap-datepicker.min.js" type="text/javascript" asp-append-version="true"></script> *@
+    @* <script src="https://unpkg.com/gijgo@1.9.14/js/gijgo.min.js" type="text/javascript" asp-append-version="true"></script> *@
+    <!-- Custom Theme Scripts -->
+    <script src="~/build/js/custom.min.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

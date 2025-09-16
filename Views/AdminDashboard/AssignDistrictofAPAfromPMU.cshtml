@@ -1,0 +1,113 @@
+﻿@model APATools.Models.Sp_APA_List_Allowed_District_at_PMUResult
+@{
+    ViewData["Title"] = "APA Dashboard";
+}
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to Admin Dashboard!</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><small>Home of @Context.Session.GetString("UserInfo") -  </small></h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                <form asp-action="AssignDistrictofAPAfromPMU" asp-asp-controller="AdminDashboard" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <h4 class="col-form-label col-md-5 col-sm-5">Assign District for APA in PMU</h4>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                District List <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                               <select class="form-control col-form-label" asp-for="DistrictCode" id="DistrictList"></select>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                               
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="submit" class="btn btn-primary form-control col-form-label" value="Assign" /> 
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="x_content">
+                <table class="table col-form-label table-striped nowrap" width="100%" id="reportid">
+                    <thead>
+                        <tr>
+                            <th>District ID</th>
+                            <th>District Name</th>
+                            <th>Allowed at PMU for Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.Info)
+                        {
+                            <tr>
+                                <td>@item.DistrictCode</td>
+                                <td>@item.DistrictName</td>
+                                <td>@item.AllowCheck</td>
+                            </tr>
+                        } 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            url: '@Url.Action("DistrictList", "AdminDashboard")', // URL to your controller action
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                var options = '<option value="">--Select District--</option>';
+                $.each(data, function (index, item) {
+                    options += '<option value="' + item.districtCode + '">' + item.districtName + '</option>';
+                });
+                $('#DistrictList').html(options);
+            },
+            error: function (error) {
+                console.log('Error fetching data:', error);
+            }
+        });
+        
+    });
+</script>

@@ -1,0 +1,147 @@
+﻿@model APATools.Models.A_APA_TE_11
+@{
+    ViewData["Title"] = "APA 2024-2025 TE_11";
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Dashboard!</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    Home of <small>
+                        @if (Context.Session.GetString("UserInfo") != null)
+                            @Context.Session.GetString("UserInfo")
+                                                </small>
+                    </h2>
+                    <div class="clearfix"></div>
+                </div>
+                @if (TempData["Failed"] != null)
+                {
+                    <div class="x_content">
+                        <div class="alert alert-danger">
+                            @TempData["Failed"]
+                        </div>
+                    </div>
+                }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                <form asp-action="APA_TE_11" asp-controller="GPDashboard" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <h4 class="col-form-label col-md-5 col-sm-5">APA-TE-11 Entry</h4>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                GP Code <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="number" asp-for="GPCode" class="form-control col-form-label" readonly value="@ViewBag.GPCode" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Financial Year <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="FYCode" class="form-control col-form-label" id="schemetype" required="required">
+                                    <option selected value="2324">2023 - 2024</option>
+                                    <option value="2425">2024 - 2025</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Last Audit Report Received Date <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input asp-for="LastAuditReportReceivedDate" id="myDate" type="date" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.LastAuditReportReceivedDate, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Meeting Date on ATR <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input asp-for="MeetingDateonATR" id="myDate1" type="date" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.MeetingDateonATR, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                ATR Submission Date <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input asp-for="ATRSubmissionDate" id="myDate2" type="date" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.LastAuditReportReceivedDate, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                ATR Submission Doc (.pdf / 5 MB) <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input asp-for="ATRResolutionSubmissionDoc" id="totalNumber" type="file" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.MeetingDateonATR, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="submit" value="Submit" class="btn btn-primary col-form-label" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <div class="row">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    // Still check on form submit
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById("myDate").setAttribute('max', today);
+        document.getElementById("myDate1").setAttribute('max', today);
+        document.getElementById("myDate2").setAttribute('max', today);
+</script>

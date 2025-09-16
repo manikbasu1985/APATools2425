@@ -1,0 +1,283 @@
+﻿@model IEnumerable<APATools.Models.Sp_APA_GetAllMC_TE_Results_with_ValuesResult>
+@{
+    ViewData["Title"] = "APA Dashboard";
+}
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Dashboard!</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Home of @Context.Session.GetString("UserInfo") -  </small></h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                <table class="table table-striped table-bordered table-responsive-sm" width="100%" id="reportid">
+                    <thead>
+                        <tr>
+                            <th>District Code</th>
+                            <th>District Name</th>
+                            <th>Block Name</th>
+                            <th>GP Name</th>
+                            <th>GP Code</th>
+                            <th>No of Members Attended</th>
+                            <th>Total No of Members</th>
+                            <th>Plan Approval Date</th>
+                            <th>Single Agenda Meeting</th>
+                            <th>MC1 Result</th>
+                            <th>No of Physically Completed Activities</th>
+                            <th>No of Issued Work Order</th>
+                            <th>MC2 Result</th>
+                            <th>OB CFC</th>
+                            <th>OB SFC</th>
+                            <th>OB OSR</th>
+                            <th>RECPT CFC UPTO DEC 2024</th>
+                            <th>RECPT SFC UPTO DEC 2024</th>
+                            <th>RECPT OSR UPTO DEC 2024</th>
+                            <th>EXP CFC UPTO MAR 2025</th>
+                            <th>EXP SFC UPTO MAR 2025</th>
+                            <th>EXP OSR UPTO MAR 2025</th>
+                            <th>Total OB</th>
+                            <th>Total Receipt</th>
+                            <th>Total Expenditure</th>
+                            <th>Percentage</th>
+                            <th>MC3 Result</th>
+                            <th>MC4 Total</th>
+                            <th>MC4 Result</th>
+                            <th>Audit Opinion</th>
+                            <th>MC5 Result</th>
+                            <th>Total OSR in INR 2425</th>
+                            <th>OSR Deduction Amount in INR 2425</th>
+                            <th>Total OSR in INR 2324</th>
+                            <th>OSR Deduction Amount in INR 2324</th>
+                            <th>MC6 Result</th>
+                            <th>Total No of Plan Under Sankalpa</th>
+                            <th>Total No of Plan Activities</th>
+                            <th>TE1 Result</th>
+                            <th>Total Budget more 3.5 Lakh</th>
+                            <th>Total Budget for 2526 FY</th>
+                            <th>TE2 Result</th>
+                            <th>Total No of Meetings Conducted</th>
+                            <th>TE3 Result</th>
+                            <th>Total no of Activities Recommended By Gram Sabha</th>
+                            <th>Total no of Activities of Gram Sabha</th>
+                            <th>TE4 Result</th>
+                            <th>TE5 Result</th>
+                            <th>TE6 Result</th>
+                            <th>TE7 Result</th>
+                            <th>Total No of WT Done</th>
+                            <th>TE8 Result</th>
+                            <th>Total No of Inspected Activities more than or equals two lakh</th>
+                            <th>Total No of Activities having values more than or equals two lakh</th>
+                            <th>TE9 Result</th>
+                            <th>GB Meeting Date</th>
+                            <th>TE10 Result</th>
+                            <th>Last Audit Report Received Date</th>
+                            <th>ATR Submission Date</th>
+                            <th>TE11 Result</th>
+                            <th>TE12 Result</th>
+                            <th>TE13 Result</th>
+                            <th>Tax non tax collected own source revenue</th>
+                            <th>Total OSR Demand Count</th>
+                            <th>TE14 Result</th>
+                            <th>MC6 Total OSR in INR 2425</th>
+                            <th>MC6 Total OSR in INR 2324</th>
+                            <th>TE15 Result</th>
+                            <th>OSR Utilized Development</th>
+                            <th>OSR Collected 202425</th>
+                            <th>TE16 Result</th>
+                            <th>Total Meeting Conducted 202425</th>
+                            <th>TE17 Result</th>
+                            <th>TE18 Result</th>
+                            <th>Untied Amount Spent from CFC SFC OSR 202425</th>
+                            <th>Expenditure for SFC</th>
+                            <th>Expenditure for CFC Untied</th>
+                            <th>Expenditure for OSR</th>
+                            <th>TE19 Result</th>
+                            <th>Grievence Resolved</th>
+                            <th>Grievence Logged</th>
+                            <th>TE20 Result</th>
+                            <th>TE Total Score</th>
+                            <th>MC Final Result</th>
+                            <th>Final Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.DistrictCode</td>
+                                <td>@item.DistrictName</td>
+                                <td>@item.BlockName</td>
+                                <td>@item.GPName</td>
+                                <td>@item.GPCode</td>
+                                <td>@item.NoofMemberAttended</td>
+                                <td>@item.TotalNoofMember</td>
+                                <td>@item.PlanApprovalDate</td>
+                                <td>@item.SingleAgendaMeeting</td>
+                                <td>@item.MC1_Result</td>
+                                <td>@item.NoofPhysicallyCompletedActivities</td>
+                                <td>@item.NoofIssuedWorkOrder</td>
+                                <td>@item.MC2_Result</td>
+                                <td>@item.OB_CFC</td>
+                                <td>@item.OB_SFC</td>
+                                <td>@item.OB_OSR</td>
+                                <td>@item.RECPT_CFC_UPTO_DEC_2024</td>
+                                <td>@item.RECPT_SFC_UPTO_DEC_2024</td>
+                                <td>@item.RECPT_OSR_UPTO_DEC_2024</td>
+                                <td>@item.EXP_CFC_UPTO_MAR_2025</td>
+                                <td>@item.EXP_SFC_UPTO_MAR_2025</td>
+                                <td>@item.EXP_OSR_UPTO_MAR_2025</td>
+                                <td>@item.Total_OB</td>
+                                <td>@item.Total_Receipt</td>
+                                <td>@item.Total_Expenditure</td>
+                                <td>@item.Percentage</td>
+                                <td>@item.MC3_Result</td>
+                                <td>@item.MC4_Total</td>
+                                <td>@item.MC4_Result</td>
+                                <td>@item.AuditOpinion</td>
+                                <td>@item.MC5_Result</td>
+                                <td>@item.TotalOSRinINR_2425</td>
+                                <td>@item.OSRDeductionAmountinINR_2425</td>
+                                <td>@item.TotalOSRinINR_2324</td>
+                                <td>@item.OSRDeductionAmountinINR_2324</td>
+                                <td>@item.MC6_Result</td>
+                                <td>@item.TotalNoofPlanUnderSankalpa</td>
+                                <td>@item.TotalNoofPlanActivities</td>
+                                <td>@item.TE1_Result</td>
+                                <td>@item.TotalBudgetmore3_5Lakh</td>
+                                <td>@item.TotalBudgetfor2526FY</td>
+                                <td>@item.TE2_Result</td>
+                                <td>@item.TotalNoofMeetingsConducted</td>
+                                <td>@item.TE3_Result</td>
+                                <td>@item.TotalnoofActivitiesRecomendedByGramSabha</td>
+                                <td>@item.TotalnoofActivitiesofGramSabha</td>
+                                <td>@item.TE4_Result</td>
+                                <td>@item.TE5_Result</td>
+                                <td>@item.TE6_Result</td>
+                                <td>@item.TE7_Result</td>
+                                <td>@item.TotalNoofWTDone</td>
+                                <td>@item.TE8_Result</td>
+                                <td>@item.TotalNoofInspectedActivitiesmorethanorequalstwolakh</td>
+                                <td>@item.TotalNoofActivitieshavingvaluesmorethanorequalstwolakh</td>
+                                <td>@item.TE9_Result</td>
+                                <td>@item.GBMeetingDate</td>
+                                <td>@item.TE10_Result</td>
+                                <td>@item.LastAuditReportReceivedDate</td>
+                                <td>@item.ATRSubmissionDate</td>
+                                <td>@item.TE11_Result</td>
+                                <td>@item.TE12_Result</td>
+                                <td>@item.TE13_Result</td>
+                                <td>@item.Tax_non_tax_collected_ownsource_revenue</td>
+                                <td>@item.TotalOSRDemandCount</td>
+                                <td>@item.TE14_Result</td>
+                                <td>@item.MC6_TotalOSRinINR_2425</td>
+                                <td>@item.MC6_TotalOSRinINR_2324</td>
+                                <td>@item.TE15_Result</td>
+                                <td>@item.OSR_Utilized_Development</td>
+                                <td>@item.OSR_Collected_202425</td>
+                                <td>@item.TE16_Result</td>
+                                <td>@item.TotalMeetingConducted202425</td>
+                                <td>@item.TE17_Result</td>
+                                <td>@item.TE18_Result</td>
+                                <td>@item.UntiedAmountSpentfromCFCSFCOSR202425</td>
+                                <td>@item.ExpenditureforSFC</td>
+                                <td>@item.ExpenditureforCFCUntied</td>
+                                <td>@item.ExpenditureforOSR</td>
+                                <td>@item.TE19_Result</td>
+                                <td>@item.GrievenceResolved</td>
+                                <td>@item.GrievenceLogged</td>
+                                <td>@item.TE20_Result</td>
+                                <td>@item.TE_TotalScore</td>
+                                <td>@item.MC_FinalResult</td>
+                                <td>@item.FinalResult</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<style>
+    div.dt-container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .dt-end {
+        display: table-cell !important;
+    }
+</style>
+@* Datatable Styles *@
+<link href="~/css/dataTables.dataTables.css" rel="stylesheet" />
+<link href="~/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/css/fixedColumns.dataTables.css" rel="stylesheet" />
+@section Scripts {
+    <script type="text/javascript" src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#reportid').DataTable({
+                paging: false,
+                scrollCollapse: true,
+                scrollY: '50vh',
+                "lengthMenu": [20, 40, 60, 80, 100],
+                fixedColumns: {
+                    start: 2,
+                    end: 2
+                },
+                layout: {
+                    topStart: {
+                        buttons: [{
+                    extend: 'excelHtml5',
+                    title: 'Data export' + "@DateTime.Now"
+                }]
+                    },
+                    bottomStart: {
+                        "pageLength": 20,
+                    },
+                    bottomEnd: {
+                        paging: {
+                            firstLast: false
+                        }
+                    },
+                }
+            });
+        });
+    </script>
+}

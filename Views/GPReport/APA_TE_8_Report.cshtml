@@ -1,0 +1,94 @@
+﻿@model IEnumerable<APATools.Models.ReportModels.APA_TE_8_Report>
+@{
+    ViewBag.Title = "Report of APA-TE-8";
+}
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Report of APA-TE-8</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <h2>
+                    Home of @if (Context.Session.GetString("UserName") != null)
+                    {
+                        <small>@Context.Session.GetString("UserName")</small>
+                    }
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                <div class="row">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="col-form-label">GPCode</th>
+                                <th class="col-form-label">GP Name</th>
+                                <th class="col-form-label">Financial Year</th>
+                                <th class="col-form-label">Total no of Water Testing done in 2024-2025</th>
+                                <th class="col-form-label">Water Testing</th>
+                                <th class="col-form-label">Edit - Update</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.GPCode</td>
+                                    <td>@item.GPName</td>
+                                    <td>@item.FYName</td>
+                                    <td>@item.TotalNoofWTDone</td>
+                                    <td>
+                                        <a asp-action="Download" asp-controller="StateDashboard" asp-route-gpcode="@item.GPCode"
+                                           asp-route-filename="@item.Activity_1_WT_Path" class="btn btn-info btn-sm col-form-label">Download</a>
+                                    </td>
+                                    @if (item.ActiveStatus == 1)
+                                    {
+                                        <td><a href="#" class="btn btn-warning">Not Allowed</a></td>
+                                    }
+                                    else if (item.ActiveStatus == 2)
+                                    {
+                                        <td><a class="btn btn-warning" href="@Url.Action("APA_TE_8_Edit", "GPEditDashboard", new { id = item.ID })">Edit Entry</a></td>
+                                    }
+                                    else
+                                    {
+                                        <td><a class="btn btn-danger" href="#">Already Edited</a></td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

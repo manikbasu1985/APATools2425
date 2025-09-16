@@ -1,0 +1,222 @@
+﻿@model APATools.Models.A_APA_MC_6
+@{
+    ViewBag.Title = "APA-MC-6";
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Entry of APA-MC-6 Condition</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5 form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <h2>
+                    GP Dashboard of @if (ViewBag.GPName != null)
+                    {
+                        <small>@ViewBag.GPName</small>
+                    }
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                <form asp-action="APA_MC_6" asp-controller="GPDashboard" method="post" enctype="multipart/form-data">
+
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <h4 class="col-form-label col-md-5 col-sm-5">APA-MC-6 Entry</h4>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                Financial Year <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="FYCode" class="form-control col-form-label" id="schemetype" required="required" readonly>
+                                    <option selected value="@ViewBag.FYCode">@ViewBag.FYName</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" >
+                                GP Code <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="text" class="form-control col-form-label" readonly value="@ViewBag.GPCode" asp-for="GPCode" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" >
+                                OSR Data to Upload in Prescribed Annexure - 3 in Excel Format (.xlsx) (Max 5 MB)<span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" asp-for="OSRDataUpload" class="form-control col-form-label" required />
+                                <span asp-validation-for="OSRDataUpload" class="alert-danger col-form-label"></span>
+                            </div>
+                        </div>
+                    </div>                   
+                    
+                        <div class="row">
+                            <div class="item form-group col-md-6">
+                                <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                    Total Tax in INR 2023 - 2024<span class="required">*</span>
+                                </label>
+                                <div class="col-md-7 col-sm-7 ">
+                                <input type="text" asp-for="TotalTaxinINR_2324"  class="form-control col-form-label" readonly required value="@ViewBag.TotalTaxinINR_2324" />
+                                    <span asp-validation-for="TotalTaxinINR_2324" class="alert-danger col-form-label"></span>
+                                </div>
+                            </div>
+                            <div class="item form-group col-md-6">
+                                <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                    Total Non-Tax in INR 2023 - 2024<span class="required">*</span>
+                                </label>
+                                <div class="col-md-7 col-sm-7 ">
+                                <input type="text" asp-for="TotalNonTaxinINR_2324"  class="form-control col-form-label" readonly required value="@ViewBag.TotalNonTaxinINR_2324" />
+                                    <span asp-validation-for="TotalNonTaxinINR_2324" class="alert-danger col-form-label"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="item form-group col-md-6">
+                                <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                    Total OSR in INR 2023 - 2024<span class="required">*</span>
+                                </label>
+                                <div class="col-md-7 col-sm-7 ">
+                                <input type="text" asp-for="TotalOSRinINR_2324"  class="form-control col-form-label" readonly required value="@ViewBag.TotalOSRinINR_2324" />
+                                    <span asp-validation-for="TotalOSRinINR_2324" class="alert-danger col-form-label"></span>
+                                </div>
+                            </div>
+                            <div class="item form-group col-md-6">
+                                <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                    OSR Deduction Amount in INR 2023 - 2024<span class="required">*</span>
+                                </label>
+                                <div class="col-md-7 col-sm-7 ">
+                                <input type="text" asp-for="OSRDeductionAmountinINR_2324"  class="form-control col-form-label" readonly required value="@ViewBag.OSRDeductionAmountinINR_2324" />
+                                    <span asp-validation-for="OSRDeductionAmountinINR_2324" class="alert-danger col-form-label"></span>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" >
+                                Total Tax in INR 2024 - 2025<span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="text" id="total1" asp-for="TotalTaxinINR_2425" class="form-control col-form-label" required />
+                                <span asp-validation-for="TotalTaxinINR_2425" class="alert-danger col-form-label"></span> @* onkeypress="return decimalOnly(event)" *@ 
+                                <span id="error"></span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" >
+                                Total Non-Tax in INR 2024 - 2025<span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="text" id="total2" asp-for="TotalNonTaxinINR_2425"  class="form-control col-form-label" required />
+                                <span asp-validation-for="TotalNonTaxinINR_2425" class="alert-danger col-form-label"></span>@* onkeypress="return decimalOnly(event)" *@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" >
+                                Total OSR in INR 2024 - 2025<span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="text" id="total3" asp-for="TotalOSRinINR_2425" onkeypress="return decimalOnly(event)" readonly class="form-control col-form-label" required />
+                                <span asp-validation-for="TotalOSRinINR_2425" class="alert-danger col-form-label"></span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" >
+                                OSR Deduction Amount in INR 2024 - 2025<span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="text" asp-for="OSRDeductionAmountinINR_2425" onkeypress="return decimalOnly(event)" class="form-control col-form-label" required />
+                                <span asp-validation-for="OSRDeductionAmountinINR_2425" class="alert-danger col-form-label"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" >
+                                CCER of 2024 - 2025 (Max 5 MB)(.pdf)<span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" asp-for="CCERUpload_2024_2025"  class="form-control col-form-label" required />
+                                <span asp-validation-for="CCERUpload_2024_2025" class="alert-danger col-form-label"></span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="submit" value="Submit" class="btn btn-primary col-form-label" />
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    function decimalOnly(evt) {
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+        // Check if there's already a decimal point
+        var inputValue = evt.target.value;
+        if (charCode == 46 && inputValue.indexOf('.') !== -1) {
+            return false;
+        }
+        return true;
+    }
+    $('#total2').on("change", function () {
+       // alert("Ss");
+                var total1 = parseFloat($('#total1').val());
+                var total2 = parseFloat($('#total2').val());
+                var data = total1 + total2;
+                //alert(data);
+                $('#total3').attr("value", data);
+            });
+</script>

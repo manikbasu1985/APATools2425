@@ -1,0 +1,385 @@
+﻿@model IEnumerable<APATools.Models.Sp_APA_GetAllMC_TE_ResultsResult>
+@{
+    ViewData["Title"] = "APA Dashboard";
+}
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Dashboard!</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Home of @Context.Session.GetString("UserInfo") -  </small></h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                <table class="table table-striped table-bordered table-responsive-sm" width="100%" id="reportid">
+                    <thead>
+                        <tr>
+                            <th>District Code</th>
+                            <th>District Name</th>
+                            <th>Block Name</th>
+                            <th>GP Name</th>
+                            <th>GP Code</th>
+                            <th>MC-1 Result</th>
+                            <th>MC-2 Result</th>
+                            <th>MC-3 Result</th>
+                            <th>MC-4 Result</th>
+                            <th>MC-5 Result</th>
+                            <th>MC-6 Result</th>
+                            <th>TE-1 Result</th>
+                            <th>TE-2 Result</th>
+                            <th>TE-3 Result</th>
+                            <th>TE-4 Result</th>
+                            <th>TE-5 Result</th>
+                            <th>TE-6 Result</th>
+                            <th>TE-7 Result</th>
+                            <th>TE-8 Result</th>
+                            <th>TE-9 Result</th>
+                            <th>TE-10 Result</th>
+                            <th>TE-11 Result</th>
+                            <th>TE-12 Result</th>
+                            <th>TE-13 Result</th>
+                            <th>TE-14 Result</th>
+                            <th>TE-15 Result</th>
+                            <th>TE-16 Result</th>
+                            <th>TE-17 Result</th>
+                            <th>TE-18 Result</th>
+                            <th>TE-19 Result</th>
+                            <th>TE-20 Result</th>
+                            <th>TE Total Score</th>
+                            <th>MC Final Result</th>
+                            <th>Final Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var item in Model)
+                        {
+                            <tr>
+                                <td>@item.DistrictCode</td>
+                                <td>@item.DistrictName</td>
+                                <td>@item.BlockName</td>
+                                <td>@item.GPName</td>
+                                <td>@item.GPCode</td>
+                                @if (item.MC1_Result == "Pass")
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.MC1_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label  bg-danger text-light">@item.MC1_Result</td>
+                                }
+                                @if (item.MC2_Result == "Pass")
+                                {
+                                    <td class="col-form-label  bg-success text-light">@item.MC2_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label  bg-danger text-light">@item.MC2_Result</td>
+                                }
+                                @if (item.MC3_Result == "Pass")
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.MC3_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.MC3_Result</td>
+                                }
+                                @if (item.MC4_Result == "Pass")
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.MC4_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.MC4_Result</td>
+                                }
+                                @if (item.MC5_Result == "Pass")
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.MC5_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.MC5_Result</td>
+                                }
+                                @if (item.MC6_Result == "Pass")
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.MC6_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.MC6_Result</td>
+                                }
+                                @if (item.TE1_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE1_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE1_Result</td>
+                                }
+                                @if (item.TE2_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE2_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE2_Result</td>
+                                }
+                                @if (item.TE3_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE3_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE3_Result</td>
+                                }
+                                @if (item.TE4_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE4_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE4_Result</td>
+                                }
+                                @if (item.TE5_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE5_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE5_Result</td>
+                                }
+                                
+                                @if (item.TE6_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE6_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE6_Result</td>
+                                }
+                                @if (item.TE7_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE7_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE7_Result</td>
+                                }
+                                @if (item.TE8_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE8_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE8_Result</td>
+                                }
+                                @if (item.TE9_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE9_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE9_Result</td>
+                                }
+                                @if (item.TE10_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE10_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE10_Result</td>
+                                }
+                                @if (item.TE11_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE11_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE11_Result</td>
+                                }
+                                @if (item.TE12_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE12_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE12_Result</td>
+                                }
+                                @if (item.TE13_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE13_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE13_Result</td>
+                                }
+                                @if (item.TE14_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE14_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE14_Result</td>
+                                }
+                                @if (item.TE15_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE15_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE15_Result</td>
+                                }
+                                @if (item.TE16_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE16_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE16_Result</td>
+                                }
+                                @if (item.TE17_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE17_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE17_Result</td>
+                                }
+                                @if (item.TE18_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE18_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE18_Result</td>
+                                }
+                                @if (item.TE19_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE19_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE19_Result</td>
+                                }
+                                @if (item.TE20_Result == 5)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE20_Result</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE20_Result</td>
+                                }
+                                @if (item.TE_TotalScore >= 50)
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.TE_TotalScore</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.TE_TotalScore</td>
+                                }
+                                @if (item.MC_FinalResult == "Pass")
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.MC_FinalResult</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.MC_FinalResult</td>
+                                }
+                                @if (item.FinalResult == "Pass")
+                                {
+                                    <td class="col-form-label bg-success text-light">@item.FinalResult</td>
+                                }
+                                else
+                                {
+                                    <td class="col-form-label bg-danger text-light">@item.FinalResult</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<style>
+    div.dt-container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .dt-end {
+        display: table-cell !important;
+    }
+</style>
+@* Datatable Styles *@
+<link href="~/css/dataTables.dataTables.css" rel="stylesheet" />
+<link href="~/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/css/fixedColumns.dataTables.css" rel="stylesheet" />
+@section Scripts {
+    <script type="text/javascript" src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#reportid').DataTable({
+                paging: false,
+                scrollCollapse: true,
+                scrollY: '50vh',
+                "lengthMenu": [20, 40, 60, 80, 100],
+                fixedColumns: {
+                    start: 2,
+                    end: 2
+                },
+                layout: {
+                    topStart: {
+                        buttons: [{
+                    extend: 'excelHtml5',
+                    title: 'Data export' + "@DateTime.Now"
+                }]
+                    },
+                    bottomStart: {
+                        "pageLength": 20,
+                    },
+                    bottomEnd: {
+                        paging: {
+                            firstLast: false
+                        }
+                    },
+                }
+            });
+        });
+    </script>
+}

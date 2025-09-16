@@ -1,0 +1,107 @@
+﻿@model IEnumerable<APATools.Models.mst_LocationGP>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPCodeGPMS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPCodeOldMIS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPCodeGIS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GPCodeNEWGPMS)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActiveStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeleteStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ModifiedOn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BlockCodeNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPCodeGPMS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPCodeOldMIS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPCodeGIS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPCodeNEWGPMS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActiveStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeleteStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ModifiedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BlockCodeNavigation.BlockCodeGIS)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.GPCode">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.GPCode">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.GPCode">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

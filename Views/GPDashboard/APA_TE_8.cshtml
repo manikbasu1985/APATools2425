@@ -1,0 +1,120 @@
+﻿@model APATools.Models.A_APA_TE_8
+
+@{
+    ViewBag.Title = "APA-TE-8";
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Entry of APA-TE-8 </h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <h2>
+                    GP Dashboard of @if (ViewBag.GPName != null)
+                    {
+                        <small>@ViewBag.GPName</small>
+                    }
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                <form asp-action="APA_TE_8" asp-controller="GPDashboard" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <h4 class="col-form-label col-md-5 col-sm-5">APA-TE-8 Entry</h4>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                GP Code <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="number" asp-for="GPCode" class="form-control col-form-label" readonly value="@ViewBag.GPCode" name="GPCode" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Financial Year <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="FYCode" class="form-control col-form-label" id="schemetype" required="required">
+                                    <option selected value="@ViewBag.FYCode">@ViewBag.FYName</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                No of Water Testing Done <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="number" asp-for="TotalNoofWTDone" class="form-control col-form-label" required />
+                                @Html.ValidationMessageFor(model => model.TotalNoofWTDone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Water Testing Report having 10 different sources for FY 2024-25 in single pdf (10 MB) <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" asp-for="Activity_1_WT" class="form-control col-form-label" required />
+                                @Html.ValidationMessageFor(model => model.Activity_1_WT, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="submit" value="Submit" class="btn btn-primary col-form-label" />
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

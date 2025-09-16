@@ -1,0 +1,234 @@
+﻿{
+   "CodeGenerationMode": 5,
+   "ContextClassName": "APAToolsContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "MinimumProductVersion": "2.6.0",
+   "ModelNamespace": null,
+   "OutputContextPath": "Context",
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "APATools",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[A_APA_ALL_Remarks]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_Completed_Count]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_District_AllowCheck]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_MC_1]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_MC_2]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_MC_3]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_MC_4]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_MC_5]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_MC_6]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_1]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_10]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_11]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_13]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_14]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_16]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_17]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_18]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_19]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_2]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_20]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_3]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_4]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_5]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_6]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_7]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_8]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[A_APA_TE_9]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[mst_FinancialYear]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[mst_LocationBlock]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[mst_LocationDistrict]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[mst_LocationGP]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[mst_LocationState]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[mst_LocationSubDivision]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[mst_UserMaster]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[mst_UserPassword]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[mst_UserRole]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[view_alllocation]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[Sp_APA_Checked_Complete_GP]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_APA_GetAllMC_TE_Results_with_Values]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_APA_GetAllMC_TE_Results]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_APA_List_Allowed_District_at_PMU]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_APA_Update_Count_Blockwise]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_APA_Update_Count_by_GP]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_APA_Update_Count]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_Edit_Remove_From_GP_for_APA]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_Edit_Update_From_GP_for_APA]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_UserLogin]",
+         "ObjectType": 1
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": true,
+   "UseDatabaseNames": true,
+   "UseDatabaseNamesForRoutines": true,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": false,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseInternalAccessModifiersForSprocsAndFunctions": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": true,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": true,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false,
+   "UseT4Split": false
+}

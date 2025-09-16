@@ -1,0 +1,158 @@
+﻿@model APATools.Models.A_APA_MC_5
+@{
+    ViewBag.Title = "APA-MC-5&TE-11";
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Entry of APA-MC-5</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <h2>
+                    GP Dashboard of @if (ViewBag.GPName != null)
+                    {
+                        <small>@ViewBag.GPName</small>
+                    }
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                <form asp-action="APA_MC_5_Edit" asp-controller="GPEditDashboard" method="post" enctype="multipart/form-data">
+
+                    @Html.AntiForgeryToken()
+
+                    <div class="row">
+                        <h4 class="col-form-label col-md-5 col-sm-5">APA-MC-5 Entry</h4>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                GP Code <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="number" class="form-control col-form-label" readonly value="@Model.GPCode" asp-for="GPCode" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                Financial Year <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="FYCode" class="form-control col-form-label" id="finYear" required>
+                                </select>
+                                <span class="text-danger">@Model.FYCode</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                <span class="required">Audit Opinion</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="AuditOpinion" class="form-control col-form-label" required>
+                                    <option value="">Select</option>
+                                    <option value="Pass">Pass</option>
+                                    <option value="Fail">Fail</option>
+                                </select>
+                                <span class="text-danger">@Model.AuditOpinion</span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                Audit Certificate / Entire Audit Report (Max 10 MB / .pdf format)<span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" asp-for="AuditCertificate" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.AuditCertificate, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="submit" class="btn btn-success" value="Submit" />
+                            </div>
+                        </div>
+
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        AjaxCall('@Url.Action("getFinacialYearforMC5", "GPDashboard")', null).done(function (response) {
+            if (response.length > 0) {
+                $('#finYear').html('');
+                var options = '';
+                options += '<option value="">Select Year</option>';
+                for (var i = 0; i < response.length; i++) {
+                    options += '<option value="' + response[i].fyCode + '">' + response[i].fyName + '</option>';
+                }
+                $('#finYear').append(options);
+
+            }
+        }).fail(function (error) {
+            alert(error.StatusText);
+        });
+    });
+    function AjaxCall(url, data, type) {
+        return $.ajax({
+            url: url,
+            type: type ? type : 'GET',
+            data: data,
+            contentType: 'application/json'
+        });
+    }
+    // Still check on form submit
+            const today = new Date().toISOString().split('T')[0];
+    document.getElementById("myDate").setAttribute('max', today);
+    document.getElementById("myDate1").setAttribute('max', today);
+    document.getElementById("myDate2").setAttribute('max', today);
+</script>

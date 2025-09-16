@@ -1,0 +1,146 @@
+﻿
+@model APATools.Models.A_APA_TE_10
+
+@{
+    ViewBag.Title = "APA-TE_10";
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Entry of APA-TE-10 </h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <h2>
+                    GP Dashboard of @if (ViewBag.GPName != null)
+                    {
+                        <small>@ViewBag.GPName</small>
+                    }
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+
+
+                <form asp-action="APA_TE_10" asp-controller="GPDashboard" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <h4 class="col-form-label col-md-5 col-sm-5">APA-TE-10 Entry</h4>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                GP Code <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="number" class="form-control col-form-label" readonly value="@ViewBag.GPCode" name="GPCode" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-8">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Financial Year <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select name="FYCode" class="form-control col-form-label" id="schemetype" required="required" readonly>
+                                    <option selected value="@ViewBag.FYCode">@ViewBag.FYName</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <hr />
+
+                    <div class="row">
+
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                General Body Meeting Date for Approval of Form 27 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input asp-for="GBMeetingDate" class="date-picker form-control col-form-label" id="myDate" placeholder="dd-mm-yyyy" type="date" required="required" />
+                                <span>@Html.ValidationMessageFor(model => model.GBMeetingDate, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                              Whether Form 27 has been approved by 30th June 2025 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select class="form-control col-form-label" asp-for="Form27Approved">
+                                    <option value="-1">- Select -</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                                <span>@Html.ValidationMessageFor(model => model.Form27Approved, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                General Body Meeting Resolution for Approval of Form 27 (Max 5 MB/ pdf)<span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" asp-for="ResolutionDoconForm27" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.ResolutionDoconForm27, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="submit" value="Submit" class="btn btn-primary col-form-label" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-8">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <div class="row">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    const today = new Date().toISOString().split('T')[0];
+        document.getElementById("myDate").setAttribute('max', today);
+</script>

@@ -1,0 +1,38 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace APATools.Models.ReportModels
+{
+    public class APA_TE_18_Report
+    {
+        public double? ID { get; set; }
+
+        public double? DistrictCode { get; set; }
+
+        public double? BlockCode { get; set; }
+
+        public long? GPCode { get; set; }
+
+        [StringLength(255)]
+        public string DistrictName { get; set; }
+
+        [StringLength(255)]
+        public string BlockName { get; set; }
+
+        [StringLength(255)]
+        public string GPName { get; set; }
+
+        public double? System_Expenditure_April_23_March_25 { get; set; }
+
+        public double? DCU_Reported_Expenditure_April_23_March_25 { get; set; }
+
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal? Deviation_Percentage { get; set; }
+
+        [StringLength(255)]
+        public string A_APA_TE_18_Result { get; set; }
+
+        public long? FYCode { get; set; }
+        public string FYName { get; set; }
+    }
+}

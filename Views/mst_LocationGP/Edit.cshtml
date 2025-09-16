@@ -1,0 +1,94 @@
+﻿@model APATools.Models.mst_LocationGP
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>mst_LocationGP</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="id" class="control-label"></label>
+                <input asp-for="id" class="form-control" />
+                <span asp-validation-for="id" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="GPCode" />
+            <div class="form-group">
+                <label asp-for="GPName" class="control-label"></label>
+                <input asp-for="GPName" class="form-control" />
+                <span asp-validation-for="GPName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GPCodeGPMS" class="control-label"></label>
+                <input asp-for="GPCodeGPMS" class="form-control" />
+                <span asp-validation-for="GPCodeGPMS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GPCodeOldMIS" class="control-label"></label>
+                <input asp-for="GPCodeOldMIS" class="form-control" />
+                <span asp-validation-for="GPCodeOldMIS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GPCodeGIS" class="control-label"></label>
+                <input asp-for="GPCodeGIS" class="form-control" />
+                <span asp-validation-for="GPCodeGIS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BlockCode" class="control-label"></label>
+                <select asp-for="BlockCode" class="form-control" asp-items="ViewBag.BlockCode"></select>
+                <span asp-validation-for="BlockCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GPCodeNEWGPMS" class="control-label"></label>
+                <input asp-for="GPCodeNEWGPMS" class="form-control" />
+                <span asp-validation-for="GPCodeNEWGPMS" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActiveStatus" class="control-label"></label>
+                <input asp-for="ActiveStatus" class="form-control" />
+                <span asp-validation-for="ActiveStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeleteStatus" class="control-label"></label>
+                <input asp-for="DeleteStatus" class="form-control" />
+                <span asp-validation-for="DeleteStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedBy" class="control-label"></label>
+                <input asp-for="CreatedBy" class="form-control" />
+                <span asp-validation-for="CreatedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedOn" class="control-label"></label>
+                <input asp-for="CreatedOn" class="form-control" />
+                <span asp-validation-for="CreatedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedBy" class="control-label"></label>
+                <input asp-for="ModifiedBy" class="form-control" />
+                <span asp-validation-for="ModifiedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifiedOn" class="control-label"></label>
+                <input asp-for="ModifiedOn" class="form-control" />
+                <span asp-validation-for="ModifiedOn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

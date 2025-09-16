@@ -1,0 +1,153 @@
+﻿@model IEnumerable<APATools.Models.ReportModels.APA_TE_14_Report>
+@{
+    ViewBag.Title = "Report of APA-TE-14";
+}
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Report of APA-TE-14</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <h2>
+                    Home of @if (Context.Session.GetString("UserName") != null)
+                    {
+                        <small>@Context.Session.GetString("UserName")</small>
+                    }
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+                <div class="row">
+                    <table class="table table-bordered table-striped" width="100%" id="reportid">
+                        <thead>
+                            <tr>
+                                <th class="col-form-label">District Name</th>
+                                <th class="col-form-label">SubDivision Name</th>
+                                <th class="col-form-label">Block Name</th>
+                                <th class="col-form-label">GP Name</th>
+                                <th class="col-form-label">GPCode</th>
+                                <th class="col-form-label">Financial Year</th>
+                                <th class="col-form-label">Tax Collected</th>
+                                <th class="col-form-label">Total OSR Demand Count</th>
+                                <th class="col-form-label">Form 7 Upload</th>
+                                <th class="col-form-label">Edit</th>
+                                <th class="col-form-label">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="col-form-label">@item.DistrictName</td>
+                                    <td class="col-form-label">@item.SubDivisionName</td>
+                                    <td class="col-form-label">@item.BlockName</td>
+                                    <td class="col-form-label">@item.GPName</td>
+                                    <td class="col-form-label">@item.GPCode</td>
+                                    <td>@item.FYName</td>
+                                    <td>@item.Tax_non_tax_collected_ownsource_revenue</td>
+                                    <td>@item.TotalOSRDemandCount</td>
+                                    <td>
+                                        <a asp-action="Download" asp-controller="StateDashboard" asp-route-gpcode="@item.GPCode"
+                                           asp-route-filename="@item.Form7Upload_path" class="btn btn-info btn-sm col-form-label">Download</a>
+                                    </td>
+                                    @if (item.ActiveStatus != 99)
+                                    {
+                                        <td><a class="btn btn-outline-primary col-form-label" href="@Url.Action("APA_TE_14_State_Edit", "StateEditDashboard", new { ID = item.ID })">Edit Entry</a></td>
+                                        <td><a class="btn btn-danger col-form-label" href="@Url.Action("APA_TE_14_State_Action", "StateEditDashboard", new { ID = item.ID })">Check</a></td>
+                                    }
+                                    else
+                                    {
+                                        <td><a class="btn btn-success disabled col-form-label" href="#">Edit Entry</a></td>
+                                        <td><a class="btn btn-success disabled col-form-label" href="#">Checking Done</a></td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    div.dt-container {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .dt-end {
+        display: table-cell !important;
+    }
+</style>
+@* Datatable Styles *@
+<link href="~/css/dataTables.dataTables.css" rel="stylesheet" />
+<link href="~/css/buttons.dataTables.css" rel="stylesheet" />
+<link href="~/css/fixedColumns.dataTables.css" rel="stylesheet" />
+@section Scripts {
+    <script type="text/javascript" src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.dataTables.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#reportid').DataTable({
+                paging: false,
+                scrollCollapse: true,
+                scrollY: '50vh',
+                "lengthMenu": [20, 40, 60, 80, 100],
+                fixedColumns: {
+                    start: 2,
+                    end: 2
+                },
+                layout: {
+                    topStart: {
+                        buttons: [{
+                    extend: 'excelHtml5',
+                    title: 'Data export' + "@DateTime.Now"
+                }]
+                    },
+                    bottomStart: {
+                        "pageLength": 20,
+                    },
+                    bottomEnd: {
+                        paging: {
+                            firstLast: false
+                        }
+                    },
+                }
+            });
+        });
+    </script>
+}

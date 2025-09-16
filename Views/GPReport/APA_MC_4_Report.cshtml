@@ -1,0 +1,99 @@
+﻿@model IEnumerable<APATools.Models.ReportModels.APA_MC_4_Report>
+@{
+    ViewBag.Title = "Report of APA-MC-4";
+}
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Report of APA-MC-4</h3>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    Home of @if (Context.Session.GetString("UserInfo") != null)
+                    {
+                        <small>@Context.Session.GetString("UserInfo")</small>
+                    }
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+
+                <div class="row">
+                    <table class="table table-bordered table-responsive" width="100%">
+                        <thead>
+                            <tr>
+                                <th>GPCode</th>
+                                <th>GP Name</th>
+                                <th>Financial Year</th>
+                                <th class="col-form-label">April 2024</th>
+                                <th class="col-form-label">May 2024</th>
+                                <th class="col-form-label">June 2024</th>
+                                <th class="col-form-label">July 2024</th>
+                                <th class="col-form-label">August 2024</th>
+                                <th class="col-form-label">September 2024</th>
+                                <th class="col-form-label">October 2024</th>
+                                <th class="col-form-label">November 2024</th>
+                                <th class="col-form-label">December 2024</th>
+                                <th class="col-form-label">January 2025</th>
+                                <th class="col-form-label">February 2025</th>
+                                <th class="col-form-label">March 2025</th>
+                                <th class="col-form-label">Total</th>
+                                <th class="col-form-label">PASS or FAIL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="col-form-label">@item.GPCode</td>
+                                    <td class="col-form-label">@item.GP</td>
+                                    <td class="col-form-label">@item.FYName</td>
+                                    <td class="col-form-label">@item.APR_2024</td>
+                                    <td class="col-form-label">@item.MAY_2024</td>
+                                    <td class="col-form-label">@item.JUN_2024</td>
+                                    <td class="col-form-label">@item.JUL_2024</td>
+                                    <td class="col-form-label">@item.AUG_2024</td>
+                                    <td class="col-form-label">@item.SEP_2024</td>
+                                    <td class="col-form-label">@item.OCT_2024</td>
+                                    <td class="col-form-label">@item.NOV_2024</td>
+                                    <td class="col-form-label">@item.DEC_2024</td>
+                                    <td class="col-form-label">@item.JAN_2025</td>
+                                    <td class="col-form-label">@item.FEB_2025</td>
+                                    <td class="col-form-label">@item.MAR_2025</td>
+                                    <td class="col-form-label">@item.Total</td>
+                                    <td class="col-form-label">@item.A_APA_MC_4_Result</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

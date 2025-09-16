@@ -1,0 +1,99 @@
+﻿@model IEnumerable<APATools.Models.ReportModels.APA_MC_3_Report>
+@{
+    ViewBag.Title = "Report of APA-MC-3";
+}
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Report of APA-MC-3</h3>
+    </div>
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>
+                    Home of @if (Context.Session.GetString("UserInfo") != null)
+                    {
+                        <small>@Context.Session.GetString("UserInfo")</small>
+                    }
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+
+                <div class="row">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th>GPCode</th>
+                                <th>GP Name</th>
+                                <th>Financial Year</th>
+                                <th>OB_CFC</th>
+                                <th>OB_SFC</th>
+                                <th>OB_OSR</th>
+                                <th>RECPT_CFC_UPTO_DEC_2024</th>
+                                <th>RECPT_SFC_UPTO_DEC_2024</th>
+                                <th>RECPT_OSR_UPTO_DEC_2024</th>
+                                <th>EXP_CFC_UPTO_MAR_2025</th>
+                                <th>EXP_SFC_UPTO_MAR_2025</th>
+                                <th>EXP_OSR_UPTO_MAR_2025</th>
+                                <th>Total_OB</th>
+                                <th>Total_Expenditure</th>
+                                <th>Total_Receipt</th>
+                                <th>Percentage</th>
+                                <th>A_APA_MC_3_Result</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.GPCode</td>
+                                    <td>@item.GP</td>
+                                    <td>@item.FYName</td>
+                                    <td>@item.OB_CFC</td>
+                                    <td>@item.OB_SFC</td>
+                                    <td>@item.OB_OSR</td>
+                                    <td>@item.RECPT_CFC_UPTO_DEC_2024</td>
+                                    <td>@item.RECPT_SFC_UPTO_DEC_2024</td>
+                                    <td>@item.RECPT_OSR_UPTO_DEC_2024</td>
+                                    <td>@item.EXP_CFC_UPTO_MAR_2025</td>
+                                    <td>@item.EXP_SFC_UPTO_MAR_2025</td>
+                                    <td>@item.EXP_OSR_UPTO_MAR_2025</td>
+                                    <td>@item.Total_OB</td>
+                                    <td>@item.Total_Expenditure</td>
+                                    <td>@item.Total_Receipt</td>
+                                    <td>@item.Percentage</td>
+                                    <td>@item.A_APA_MC_3_Result</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

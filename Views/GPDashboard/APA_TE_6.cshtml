@@ -1,0 +1,373 @@
+﻿@model APATools.Models.A_APA_TE_6
+
+@{
+    ViewBag.Title = "APA-TE-6";
+}
+
+<div class="page-title">
+    <div class="title_left">
+        <h3>Welcome to the Entry of APA-TE-6</h3>
+    </div>
+
+    <div class="title_right">
+        <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+            <div class="input-group">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <h2>
+                    GP Dashboard of @if (ViewBag.GPName != null)
+                    {
+                        <small>@ViewBag.GPName</small>
+                    }
+                </h2>
+                <div class="clearfix"></div>
+            </div>
+            @if (TempData["Failed"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-danger">
+                        @TempData["Failed"]
+                    </div>
+                </div>
+            }
+            @if (TempData["Success"] != null)
+            {
+                <div class="x_content">
+                    <div class="alert alert-success">
+                        @TempData["Success"]
+                    </div>
+                </div>
+            }
+            <div class="x_content">
+
+                <form asp-action="APA_TE_6" asp-controller="GPDashboard" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        <h4 class="col-form-label col-md-5 col-sm-5">APA-TE-6 Entry</h4>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                GP Code <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="text" class="form-control col-form-label" readonly value="@ViewBag.GPCode" name="GPCode" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Financial Year <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select name="FYCode" class="form-control col-form-label" id="schemetype" required="required" readonly>
+                                    <option selected value="@ViewBag.FYCode">@ViewBag.FYName</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Highest Value Activity 1 Name & ActivityID <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.TextAreaFor(model => model.ActivityName_1_MT, new { @class = "form-control col-form-label", required = "required" })
+                                @*@Html.TextBoxFor(model => model.ActivityName_1, new { @class = "form-control col-form-label", required = "required" })*@
+                                <span>@Html.ValidationMessageFor(model => model.ActivityName_1_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                HV Activity Work Order Value 1 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.TextBoxFor(model => model.ActivityValue_1_MT, new { @class = "form-control col-form-label", required = "required", onkeypress = "return decimalOnly(event)" })
+                                <span>@Html.ValidationMessageFor(model => model.ActivityValue_1_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Fund for the Activity - Work Order Value 1 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="FundofActivity_1_MT" class="form-control col-form-label" required>
+                                    <option value="">-- Select Fund --</option>
+                                    <option value="CFC">CFC</option>
+                                    <option value="SFC">SFC</option>
+                                    <option value="OSR">OSR</option>
+                                </select>
+                                <span>@Html.ValidationMessageFor(model => model.FundofActivity_1_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Upload Signed Copy of Material Testing Report of Highest Value 1 (Max 10 MB / .pdf) <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" name="Activity_1_MT" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.Activity_1_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Highest Value Activity 2 Name & ActivityID <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.TextAreaFor(model => model.ActivityName_2_MT, new { @class = "form-control col-form-label", required = "required" })
+                                @*@Html.TextBoxFor(model => model.ActivityName_1, new { @class = "form-control col-form-label", required = "required" })*@
+                                <span>@Html.ValidationMessageFor(model => model.ActivityName_2_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                HV Activity Work Order Value 2 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.TextBoxFor(model => model.ActivityValue_2_MT, new { @class = "form-control col-form-label", required = "required", onkeypress = "return decimalOnly(event)" })
+                                <span>@Html.ValidationMessageFor(model => model.ActivityValue_2_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Fund for the Activity - Work Order Value 2 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="FundofActivity_2_MT" class="form-control col-form-label" required>
+                                    <option value="">-- Select Fund --</option>
+                                    <option value="CFC">CFC</option>
+                                    <option value="SFC">SFC</option>
+                                    <option value="OSR">OSR</option>
+                                </select>
+                                <span>@Html.ValidationMessageFor(model => model.FundofActivity_2_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Upload Signed Copy of Material Testing Report of Highest Value 2 (Max 10 MB / .pdf) <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" name="Activity_2_MT" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.Activity_2_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Highest Value Activity 3 Name & ActivityID <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.TextAreaFor(model => model.ActivityName_3_MT, new { @class = "form-control col-form-label", required = "required" })
+                                @*@Html.TextBoxFor(model => model.ActivityName_1, new { @class = "form-control col-form-label", required = "required" })*@
+                                <span>@Html.ValidationMessageFor(model => model.ActivityName_3_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                HV Activity Work Order Value 3 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.TextBoxFor(model => model.ActivityValue_3_MT, new { @class = "form-control col-form-label", required = "required", onkeypress = "return decimalOnly(event)" })
+                                <span>@Html.ValidationMessageFor(model => model.ActivityValue_3_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Fund for the Activity - Work Order Value 3 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="FundofActivity_3_MT" class="form-control col-form-label" required>
+                                    <option value="">-- Select Fund --</option>
+                                    <option value="CFC">CFC</option>
+                                    <option value="SFC">SFC</option>
+                                    <option value="OSR">OSR</option>
+                                </select>
+                                <span>@Html.ValidationMessageFor(model => model.FundofActivity_3_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Upload Signed Copy of Material Testing Report of Highest Value 3 (Max 10 MB / .pdf) <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" name="Activity_3_MT" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.Activity_3_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Highest Value Activity 4 Name & ActivityID <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.TextAreaFor(model => model.ActivityName_4_MT, new { @class = "form-control col-form-label", required = "required" })
+                                @*@Html.TextBoxFor(model => model.ActivityName_1, new { @class = "form-control col-form-label", required = "required" })*@
+                                <span>@Html.ValidationMessageFor(model => model.ActivityName_4_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                HV Activity Work Order Value 4 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.TextBoxFor(model => model.ActivityValue_4_MT, new { @class = "form-control col-form-label", required = "required", onkeypress = "return decimalOnly(event)" })
+                                <span>@Html.ValidationMessageFor(model => model.ActivityValue_4_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Fund for the Activity - Work Order Value 4 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="FundofActivity_4_MT" class="form-control col-form-label" required>
+                                    <option value="">-- Select Fund --</option>
+                                    <option value="CFC">CFC</option>
+                                    <option value="SFC">SFC</option>
+                                    <option value="OSR">OSR</option>
+                                </select>
+                                <span>@Html.ValidationMessageFor(model => model.FundofActivity_4_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Upload Signed Copy of Material Testing Report of Highest Value 4 (Max 10 MB / .pdf) <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" name="Activity_4_MT" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.Activity_4_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Highest Value Activity 5 Name & ActivityID <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.TextAreaFor(model => model.ActivityName_5_MT, new { @class = "form-control col-form-label", required = "required" })
+                                @*@Html.TextBoxFor(model => model.ActivityName_1, new { @class = "form-control col-form-label", required = "required" })*@
+                                <span>@Html.ValidationMessageFor(model => model.ActivityName_5_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                HV Activity Work Order Value 5 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                @Html.TextBoxFor(model => model.ActivityValue_5_MT, new { @class = "form-control col-form-label", required = "required", onkeypress = "return decimalOnly(event)" })
+                                <span>@Html.ValidationMessageFor(model => model.ActivityValue_5_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Fund for the Activity - Work Order Value 5 <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <select asp-for="FundofActivity_5_MT" class="form-control col-form-label" required>
+                                    <option value="">-- Select Fund --</option>
+                                    <option value="CFC">CFC</option>
+                                    <option value="SFC">SFC</option>
+                                    <option value="OSR">OSR</option>
+                                </select>
+                                <span>@Html.ValidationMessageFor(model => model.FundofActivity_5_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-3">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Upload Signed Copy of Material Testing Report of Highest Value 5 (Max 10 MB / .pdf) <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" name="Activity_5_MT" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.Activity_5_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Upload Annexure - II highlighting Highest Values mentioned above (1,2,3,4 & 5) (.xlsx / 5 MB) <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" name="EntireWOHightingAll_MT" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.EntireWOHightingAll_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-6">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                Upload 5 Completion Certificate in PDF highlighting Highest Values mentioned above (1,2,3,4 & 5) <span class="required">*</span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="file" asp-for="CompletionCertificate_MT" class="form-control col-form-label" required />
+                                <span>@Html.ValidationMessageFor(model => model.CompletionCertificate_MT, "", new { @class = "text-danger" }) </span>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+
+                    <div class="row">
+                        <div class="item form-group col-md-4">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <input type="submit" class="btn btn-success" value="Submit" />
+                            </div>
+                        </div>
+                        <div class="item form-group col-md-8">
+                            <label class="col-form-label col-md-5 col-sm-5 label-align" for="last-name">
+                                <span class="required"></span>
+                            </label>
+                            <div class="col-md-7 col-sm-7 ">
+                                <div class="row">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+
+    <script type="text/javascript">
+        $('textarea').bind('keypress', function (e) {
+            if ((e.keyCode || e.which) == 13) {
+                $(this).parents('form').submit();
+                return false;
+            }
+        });
+        function decimalOnly(evt) {
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+                    return false;
+
+                // Check if there's already a decimal point
+                var inputValue = evt.target.value;
+                if (charCode == 46 && inputValue.indexOf('.') !== -1) {
+                    return false;
+                }
+                return true;
+            }
+    </script>
+}
