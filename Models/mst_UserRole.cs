@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace APATools.Models;
 
 [Table("mst_UserRole")]
-[Index("RoleName", Name = "UQ__mst_User__8A2B6160D26AF90D", IsUnique = true)]
+[Index("RoleName", Name = "UQ__mst_User__8A2B61600FB05FE9", IsUnique = true)]
 public partial class mst_UserRole
 {
     public long id { get; set; }

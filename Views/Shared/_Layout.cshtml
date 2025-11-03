@@ -103,6 +103,32 @@
                                 {
                                     <ul class="nav side-menu">
                                         <li>
+                                            <a><i class="fa fa-bar-chart-o"></i> Admin Tools<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                <li>
+                                                    <a><i class="fa fa-chevron-down"></i>Admin Details</a>
+                                                    <ul class="nav child_menu">
+                                                        <li>
+                                                            <a><i class="fa fa-chevron-down"></i> Results<span class="fa fa-chevron-down"></span></a>
+                                                            <ul class="nav child_menu">
+                                                                @* <li><a href="@Url.Action("GetResults", "AdminDashboard")">Results</a></li> *@
+                                                                <li><a href="@Url.Action("GetResultwithValue", "AdminDashboard")">Results with Value</a></li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                    @*<ul class="nav side-menu">
+                                        <li>
+                                            <a><i class="fa fa-chevron-down"></i> Results<span class="fa fa-chevron-down"></span></a>
+                                            <ul class="nav child_menu">
+                                                 <li><a href="@Url.Action("GetResults", "AdminDashboard")">Results</a></li> 
+                                                <li><a href="@Url.Action("GetResultwithValue", "AdminDashboard")">Results with Value</a></li>
+                                            </ul>
+                                        </li>
+                                         <li>
                                             <a><i class="fa fa-bar-chart-o"></i>APA Compile Reports<span class="fa fa-chevron-down"> </span></a>
                                             <ul class="nav child_menu">
                                                 <li>
@@ -168,9 +194,9 @@
                                                     </ul>
                                                 </li>
                                             </ul>
-                                        </li>
+                                        </li> 
                                         
-                                    </ul>
+                                    </ul>*@
                                 }
                                 else if (Context.Session.GetString("UserRole") == "10")
                                 {
@@ -886,17 +912,17 @@
                                                 <li>
                                                     <a><i class="fa fa-chevron-down"></i>Admin Details</a>
                                                     <ul class="nav child_menu">
-                                                        <li>
+                                                        @* <li>
                                                             <a><i class="fa fa-chevron-down"></i> Assign PMU User for Check APA<span class="fa fa-chevron-down"></span></a>
                                                             <ul class="nav child_menu">
                                                                 <li><a href="@Url.Action("AssignDistrictofAPAfromPMU", "AdminDashboard")">Assign User</a></li>
                                                                 <li><a href="@Url.Action("UpdateActiveStatus", "AdminDashboard")">Active Status Update</a></li>
                                                             </ul>
-                                                        </li>
+                                                        </li> *@
                                                         <li>
                                                             <a><i class="fa fa-chevron-down"></i> Results<span class="fa fa-chevron-down"></span></a>
                                                             <ul class="nav child_menu">
-                                                                <li><a href="@Url.Action("GetResults", "AdminDashboard")">Results</a></li>
+                                                                @* <li><a href="@Url.Action("GetResults", "AdminDashboard")">Results</a></li> *@
                                                                 <li><a href="@Url.Action("GetResultwithValue", "AdminDashboard")">Results with Value</a></li>
                                                             </ul>
                                                         </li>

@@ -62,6 +62,14 @@ namespace APATools.Models
         public string AuditOpinion { get; set; }
         [StringLength(4)]
         public string MC5_Result { get; set; }
+        [Column("TotalTaxinINR_2324", TypeName = "decimal(18,2)")]
+        public decimal? TotalTaxinINR_2324 { get; set; }
+        [Column("TotalNonTaxinINR_2324", TypeName = "decimal(18,2)")]
+        public decimal? TotalNonTaxinINR_2324 { get; set; }
+        [Column("TotalTaxinINR_2425", TypeName = "decimal(18,2)")]
+        public decimal? TotalTaxinINR_2425 { get; set; }
+        [Column("TotalNonTaxinINR_2425", TypeName = "decimal(18,2)")]
+        public decimal? TotalNonTaxinINR_2425 { get; set; }
         [Column("TotalOSRinINR_2425", TypeName = "decimal(18,2)")]
         public decimal? TotalOSRinINR_2425 { get; set; }
         [Column("OSRDeductionAmountinINR_2425", TypeName = "decimal(18,2)")]
@@ -85,9 +93,9 @@ namespace APATools.Models
         public long? TotalnoofActivitiesRecomendedByGramSabha { get; set; }
         public long? TotalnoofActivitiesofGramSabha { get; set; }
         public int TE4_Result { get; set; }
-        public int TE5_Result { get; set; }
-        public int TE6_Result { get; set; }
-        public int TE7_Result { get; set; }
+        public long? TE5_Result { get; set; }
+        public long? TE6_Result { get; set; }
+        public long? TE7_Result { get; set; }
         public long? TotalNoofWTDone { get; set; }
         public int TE8_Result { get; set; }
         public long? TotalNoofInspectedActivitiesmorethanorequalstwolakh { get; set; }
@@ -100,7 +108,7 @@ namespace APATools.Models
         public int TE11_Result { get; set; }
         public double? Total { get; set; }
         public int TE12_Result { get; set; }
-        public int TE13_Result { get; set; }
+        public long? TE13_Result { get; set; }
         [Column("Tax_non_tax_collected_ownsource_revenue", TypeName = "decimal(18,2)")]
         public decimal? Tax_non_tax_collected_ownsource_revenue { get; set; }
         [Column("TotalOSRDemandCount", TypeName = "decimal(18,2)")]
@@ -131,7 +139,7 @@ namespace APATools.Models
         public long? GrievenceResolved { get; set; }
         public long? GrievenceLogged { get; set; }
         public int TE20_Result { get; set; }
-        public int? TE_TotalScore { get; set; }
+        public long? TE_TotalScore { get; set; }
         [StringLength(4)]
         public string MC_FinalResult { get; set; }
         [StringLength(4)]

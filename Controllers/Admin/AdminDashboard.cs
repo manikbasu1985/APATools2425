@@ -165,7 +165,7 @@ namespace APATools.Controllers.Admin
         }
         public async Task<IActionResult> GetResultwithValue()
         {
-            if (HttpContext.Session.GetString("UserRole") == "1")
+            if (HttpContext.Session.GetString("UserRole") == "1" || HttpContext.Session.GetString("UserRole") == "4")
             {
                 var data = await _context.Procedures.Sp_APA_GetAllMC_TE_Results_with_ValuesAsync();
                 return View(data);

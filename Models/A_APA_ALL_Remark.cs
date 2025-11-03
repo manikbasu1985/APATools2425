@@ -45,14 +45,11 @@ public partial class A_APA_ALL_Remark
     [Column(TypeName = "text")]
     public string TE_4 { get; set; }
 
-    [Column(TypeName = "text")]
-    public string TE_5 { get; set; }
+    public long? TE_5 { get; set; }
 
-    [Column(TypeName = "text")]
-    public string TE_6 { get; set; }
+    public long? TE_6 { get; set; }
 
-    [Column(TypeName = "text")]
-    public string TE_7 { get; set; }
+    public long? TE_7 { get; set; }
 
     [Column(TypeName = "text")]
     public string TE_8 { get; set; }
@@ -69,8 +66,7 @@ public partial class A_APA_ALL_Remark
     [Column(TypeName = "text")]
     public string TE_12 { get; set; }
 
-    [Column(TypeName = "text")]
-    public string TE_13 { get; set; }
+    public long? TE_13 { get; set; }
 
     [Column(TypeName = "text")]
     public string TE_14 { get; set; }

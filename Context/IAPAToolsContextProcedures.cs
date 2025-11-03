@@ -13,9 +13,11 @@ namespace APATools.Context
 {
     public partial interface IAPAToolsContextProcedures
     {
-        Task<List<____Sp_APA_Checked_Complete_GPResult>> ____Sp_APA_Checked_Complete_GPAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<Sp_APA_Checked_Complete_GPResult>> Sp_APA_Checked_Complete_GPAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<Sp_APA_GetAllMC_TE_ResultsResult>> Sp_APA_GetAllMC_TE_ResultsAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<List<Sp_APA_GetAllMC_TE_Results_Backup_09092025Result>> Sp_APA_GetAllMC_TE_Results_Backup_09092025Async(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<List<Sp_APA_GetAllMC_TE_Results_backup_16092025Result>> Sp_APA_GetAllMC_TE_Results_backup_16092025Async(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
+        Task<List<Sp_APA_GetAllMC_TE_Results_Old_backupResult>> Sp_APA_GetAllMC_TE_Results_Old_backupAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<Sp_APA_GetAllMC_TE_Results_with_ValuesResult>> Sp_APA_GetAllMC_TE_Results_with_ValuesAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<Sp_APA_List_Allowed_District_at_PMUResult>> Sp_APA_List_Allowed_District_at_PMUAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);
         Task<List<Sp_APA_Update_CountResult>> Sp_APA_Update_CountAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default);

@@ -20,10 +20,6 @@
          "ObjectType": 0
       },
       {
-         "Name": "[dbo].[A_APA_Completed_Count]",
-         "ObjectType": 0
-      },
-      {
          "Name": "[dbo].[A_APA_District_AllowCheck]",
          "ObjectType": 0
       },
@@ -84,6 +80,10 @@
          "ObjectType": 0
       },
       {
+         "Name": "[dbo].[A_APA_TE_18_HWH]",
+         "ObjectType": 0
+      },
+      {
          "Name": "[dbo].[A_APA_TE_19]",
          "ObjectType": 0
       },
@@ -121,6 +121,14 @@
       },
       {
          "Name": "[dbo].[A_APA_TE_9]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MC_Update_latest]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MC3_Update]",
          "ObjectType": 0
       },
       {
@@ -165,6 +173,18 @@
       },
       {
          "Name": "[dbo].[Sp_APA_Checked_Complete_GP]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_APA_GetAllMC_TE_Results_Backup_ 09092025]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_APA_GetAllMC_TE_Results_backup_16092025]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[Sp_APA_GetAllMC_TE_Results_Old_backup]",
          "ObjectType": 1
       },
       {

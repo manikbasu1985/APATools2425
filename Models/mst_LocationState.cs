@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace APATools.Models;
 
 [Table("mst_LocationState")]
-[Index("StateName", Name = "UQ__mst_Loca__554763159CD3F1C0", IsUnique = true)]
+[Index("StateName", Name = "UQ__mst_Loca__55476315BFDF1A1B", IsUnique = true)]
 public partial class mst_LocationState
 {
     public long id { get; set; }

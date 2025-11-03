@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace APATools.Models
 {
-    public partial class Sp_APA_GetAllMC_TE_ResultsResult
+    public partial class Sp_APA_GetAllMC_TE_Results_Old_backupResult
     {
         public long DistrictCode { get; set; }
         [StringLength(250)]
@@ -32,26 +32,10 @@ namespace APATools.Models
         public int TE2_Result { get; set; }
         public int TE3_Result { get; set; }
         public int TE4_Result { get; set; }
-        public long? TE5_Result { get; set; }
-        public long? TE6_Result { get; set; }
-        public long? TE7_Result { get; set; }
+        public int TE5_Result { get; set; }
+        public int TE6_Result { get; set; }
+        public int TE7_Result { get; set; }
         public int TE8_Result { get; set; }
         public int TE9_Result { get; set; }
-        public int TE10_Result { get; set; }
-        public int TE11_Result { get; set; }
-        public int TE12_Result { get; set; }
-        public long? TE13_Result { get; set; }
-        public int TE14_Result { get; set; }
-        public int TE15_Result { get; set; }
-        public int TE16_Result { get; set; }
-        public int TE17_Result { get; set; }
-        public int TE18_Result { get; set; }
-        public int TE19_Result { get; set; }
-        public int TE20_Result { get; set; }
-        public long? TE_TotalScore { get; set; }
-        [StringLength(4)]
-        public string MC_FinalResult { get; set; }
-        [StringLength(4)]
-        public string FinalResult { get; set; }
     }
 }

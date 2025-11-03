@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 namespace APATools.Models;
 
 [Table("A_APA_MC_1")]
-[Index("GPCode", Name = "UQ__A_APA_MC__D29814754B6DE6EC", IsUnique = true)]
+[Index("GPCode", Name = "UQ__A_APA_MC__D2981475B6BF6EA5", IsUnique = true)]
 public partial class A_APA_MC_1
 {
     [Key]

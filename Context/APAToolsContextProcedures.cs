@@ -43,26 +43,6 @@ namespace APATools.Context
             _context = context;
         }
 
-        public virtual async Task<List<____Sp_APA_Checked_Complete_GPResult>> ____Sp_APA_Checked_Complete_GPAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
-        {
-            var parameterreturnValue = new SqlParameter
-            {
-                ParameterName = "returnValue",
-                Direction = System.Data.ParameterDirection.Output,
-                SqlDbType = System.Data.SqlDbType.Int,
-            };
-
-            var sqlParameters = new []
-            {
-                parameterreturnValue,
-            };
-            var _ = await _context.SqlQueryAsync<____Sp_APA_Checked_Complete_GPResult>("EXEC @returnValue = [dbo].[____Sp_APA_Checked_Complete_GP]", sqlParameters, cancellationToken);
-
-            returnValue?.SetValue(parameterreturnValue.Value);
-
-            return _;
-        }
-
         public virtual async Task<List<Sp_APA_Checked_Complete_GPResult>> Sp_APA_Checked_Complete_GPAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
         {
             var parameterreturnValue = new SqlParameter
@@ -97,6 +77,66 @@ namespace APATools.Context
                 parameterreturnValue,
             };
             var _ = await _context.SqlQueryAsync<Sp_APA_GetAllMC_TE_ResultsResult>("EXEC @returnValue = [dbo].[Sp_APA_GetAllMC_TE_Results]", sqlParameters, cancellationToken);
+
+            returnValue?.SetValue(parameterreturnValue.Value);
+
+            return _;
+        }
+
+        public virtual async Task<List<Sp_APA_GetAllMC_TE_Results_Backup_09092025Result>> Sp_APA_GetAllMC_TE_Results_Backup_09092025Async(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        {
+            var parameterreturnValue = new SqlParameter
+            {
+                ParameterName = "returnValue",
+                Direction = System.Data.ParameterDirection.Output,
+                SqlDbType = System.Data.SqlDbType.Int,
+            };
+
+            var sqlParameters = new []
+            {
+                parameterreturnValue,
+            };
+            var _ = await _context.SqlQueryAsync<Sp_APA_GetAllMC_TE_Results_Backup_09092025Result>("EXEC @returnValue = [dbo].[Sp_APA_GetAllMC_TE_Results_Backup_ 09092025]", sqlParameters, cancellationToken);
+
+            returnValue?.SetValue(parameterreturnValue.Value);
+
+            return _;
+        }
+
+        public virtual async Task<List<Sp_APA_GetAllMC_TE_Results_backup_16092025Result>> Sp_APA_GetAllMC_TE_Results_backup_16092025Async(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        {
+            var parameterreturnValue = new SqlParameter
+            {
+                ParameterName = "returnValue",
+                Direction = System.Data.ParameterDirection.Output,
+                SqlDbType = System.Data.SqlDbType.Int,
+            };
+
+            var sqlParameters = new []
+            {
+                parameterreturnValue,
+            };
+            var _ = await _context.SqlQueryAsync<Sp_APA_GetAllMC_TE_Results_backup_16092025Result>("EXEC @returnValue = [dbo].[Sp_APA_GetAllMC_TE_Results_backup_16092025]", sqlParameters, cancellationToken);
+
+            returnValue?.SetValue(parameterreturnValue.Value);
+
+            return _;
+        }
+
+        public virtual async Task<List<Sp_APA_GetAllMC_TE_Results_Old_backupResult>> Sp_APA_GetAllMC_TE_Results_Old_backupAsync(OutputParameter<int> returnValue = null, CancellationToken cancellationToken = default)
+        {
+            var parameterreturnValue = new SqlParameter
+            {
+                ParameterName = "returnValue",
+                Direction = System.Data.ParameterDirection.Output,
+                SqlDbType = System.Data.SqlDbType.Int,
+            };
+
+            var sqlParameters = new []
+            {
+                parameterreturnValue,
+            };
+            var _ = await _context.SqlQueryAsync<Sp_APA_GetAllMC_TE_Results_Old_backupResult>("EXEC @returnValue = [dbo].[Sp_APA_GetAllMC_TE_Results_Old_backup]", sqlParameters, cancellationToken);
 
             returnValue?.SetValue(parameterreturnValue.Value);
 

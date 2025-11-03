@@ -16,8 +16,6 @@ public partial class APAToolsContext : DbContext
 
     public virtual DbSet<A_APA_ALL_Remark> A_APA_ALL_Remarks { get; set; }
 
-    public virtual DbSet<A_APA_Completed_Count> A_APA_Completed_Counts { get; set; }
-
     public virtual DbSet<A_APA_District_AllowCheck> A_APA_District_AllowChecks { get; set; }
 
     public virtual DbSet<A_APA_MC_1> A_APA_MC_1s { get; set; }
@@ -70,6 +68,10 @@ public partial class APAToolsContext : DbContext
 
     public virtual DbSet<A_APA_TE_9> A_APA_TE_9s { get; set; }
 
+    public virtual DbSet<MC3_Update> MC3_Updates { get; set; }
+
+    public virtual DbSet<MC_Update_latest> MC_Update_latests { get; set; }
+
     public virtual DbSet<mst_FinancialYear> mst_FinancialYears { get; set; }
 
     public virtual DbSet<mst_LocationBlock> mst_LocationBlocks { get; set; }
@@ -92,16 +94,6 @@ public partial class APAToolsContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<A_APA_ALL_Remark>(entity =>
-        {
-            entity.Property(e => e.ID).ValueGeneratedNever();
-        });
-
-        modelBuilder.Entity<A_APA_Completed_Count>(entity =>
-        {
-            entity.Property(e => e.ID).ValueGeneratedNever();
-        });
-
         modelBuilder.Entity<A_APA_MC_1>(entity =>
         {
             entity.HasKey(e => e.ID).HasName("PK_A_APA_C1");
@@ -114,7 +106,7 @@ public partial class APAToolsContext : DbContext
 
         modelBuilder.Entity<A_APA_TE_20>(entity =>
         {
-            entity.HasKey(e => e.ID).HasName("PK__A_APA_TE__3214EC2746D5C7A2");
+            entity.HasKey(e => e.ID).HasName("PK__A_APA_TE__3214EC2760EDF4BF");
         });
 
         modelBuilder.Entity<mst_FinancialYear>(entity =>
@@ -167,7 +159,7 @@ public partial class APAToolsContext : DbContext
 
         modelBuilder.Entity<mst_LocationState>(entity =>
         {
-            entity.HasKey(e => e.StateCode).HasName("PK__mst_Loca__D515E98B68B2A217");
+            entity.HasKey(e => e.StateCode).HasName("PK__mst_Loca__D515E98BE1D7CD7B");
 
             entity.Property(e => e.StateCode).ValueGeneratedNever();
             entity.Property(e => e.id).ValueGeneratedOnAdd();
@@ -199,14 +191,14 @@ public partial class APAToolsContext : DbContext
 
         modelBuilder.Entity<mst_UserPassword>(entity =>
         {
-            entity.HasKey(e => e.UserName).HasName("PK__mst_User__C9F2845771F5D82F");
+            entity.HasKey(e => e.UserName).HasName("PK__mst_User__C9F28457AF464985");
 
             entity.Property(e => e.id).ValueGeneratedOnAdd();
         });
 
         modelBuilder.Entity<mst_UserRole>(entity =>
         {
-            entity.HasKey(e => e.RoleCode).HasName("PK__mst_User__D62CB59DB952FF8F");
+            entity.HasKey(e => e.RoleCode).HasName("PK__mst_User__D62CB59D602C8ED3");
 
             entity.Property(e => e.RoleCode).ValueGeneratedNever();
             entity.Property(e => e.id).ValueGeneratedOnAdd();
